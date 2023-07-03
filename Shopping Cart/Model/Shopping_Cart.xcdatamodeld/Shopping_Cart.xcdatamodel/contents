@@ -3,19 +3,29 @@
     <entity name="CartEntity" representedClassName="CartEntity" syncable="YES" codeGenerationType="class">
         <attribute name="image" optional="YES" attributeType="String"/>
         <attribute name="item" optional="YES" attributeType="String"/>
+        <attribute name="itemid" optional="YES" attributeType="String"/>
         <attribute name="price" optional="YES" attributeType="String"/>
         <attribute name="quantity" optional="YES" attributeType="String"/>
         <attribute name="userid" optional="YES" attributeType="String"/>
+        <relationship name="toOrder" optional="YES" maxCount="1" deletionRule="No Action" destinationEntity="OrdersEntity" inverseName="toCart" inverseEntity="OrdersEntity"/>
+    </entity>
+    <entity name="OrdersEntity" representedClassName="OrdersEntity" syncable="YES" codeGenerationType="class">
+        <attribute name="orderDate" optional="YES" attributeType="String"/>
+        <attribute name="orderId" optional="YES" attributeType="String"/>
+        <attribute name="totalPrice" optional="YES" attributeType="String"/>
+        <relationship name="toCart" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="CartEntity" inverseName="toOrder" inverseEntity="CartEntity"/>
     </entity>
     <entity name="ProductEntity" representedClassName="ProductEntity" syncable="YES" codeGenerationType="class">
         <attribute name="desc" optional="YES" attributeType="String"/>
         <attribute name="image" optional="YES" attributeType="String"/>
         <attribute name="item" optional="YES" attributeType="String"/>
         <attribute name="price" optional="YES" attributeType="String"/>
+        <attribute name="productid" optional="YES" attributeType="String"/>
     </entity>
     <entity name="RegistrationEntity" representedClassName="RegistrationEntity" syncable="YES" codeGenerationType="class">
+        <attribute name="firstname" optional="YES" attributeType="String"/>
+        <attribute name="lastname" optional="YES" attributeType="String"/>
         <attribute name="mobile" optional="YES" attributeType="String"/>
-        <attribute name="name" optional="YES" attributeType="String"/>
         <attribute name="password" optional="YES" attributeType="String"/>
         <attribute name="userid" optional="YES" attributeType="String"/>
     </entity>

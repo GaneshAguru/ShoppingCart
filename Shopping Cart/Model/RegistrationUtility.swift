@@ -11,29 +11,27 @@ import UIKit
 struct RegistrationUtility{
     
     static var instance = RegistrationUtility()
-    
     let dbContext = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
-    
-    
     private init(){
         
     }
     
-    
-    func addRegistrationDetails(name:String,userid:String,password:String,mobile:String){
-        
+    func addRegistrationDetails(firstName:String,lastName:String,userid:String,password:String,mobile:String)->RegistrationEntity{
         
         let register = RegistrationEntity(context: dbContext)
-        
-        register.name = name
+        register.firstname = firstName
+        register.lastname = lastName
         register.userid = userid
         register.password = password
         register.mobile = mobile
+        
         do{
             try dbContext.save()
+            return register
         }catch{
             print(error.localizedDescription)
         }
+        return register
     }
     
     
@@ -59,12 +57,11 @@ struct RegistrationUtility{
         
         do{
             let result = try dbContext.fetch(useridReq)
-            print("result:\(result)")
-
+            
             return result
         }catch{
             print(error.localizedDescription)
-            print("^^^^^^^^^^^^^^^^^^^^^^^")
+           
         }
         return []
     }
